@@ -1,4 +1,52 @@
 
+Sub Change_Table_Type(tbl As Word.Table)
+    tbl.Select
+    With tbl
+        .Style = "Table Grid"
+    End With
+    tbl.Rows.HeightRule = wdRowHeightAuto
+    With Selection.Font
+        .Color = wdColorAutomatic
+    End With
+    With tbl
+        .Borders(wdBorderLeft).Color = wdColorAutomatic
+        .Borders(wdBorderRight).Color = wdColorAutomatic
+        .Borders(wdBorderTop).Color = wdColorAutomatic
+        .Borders(wdBorderBottom).Color = wdColorAutomatic
+        .Borders(wdBorderHorizontal).Color = wdColorAutomatic
+        .Borders(wdBorderVertical).Color = wdColorAutomatic
+        .Borders(wdBorderDiagonalDown).LineStyle = wdLineStyleNone
+        .Borders(wdBorderDiagonalUp).LineStyle = wdLineStyleNone
+        .Borders.Shadow = False
+    End With
+ '''  background color:
+    'Selection.Shading.BackgroundPatternColor = -603923969
+    With Options
+        .DefaultBorderColor = wdColorAutomatic
+    End With
+    With Selection.ParagraphFormat
+        .Alignment = wdAlignParagraphJustify
+        .LeftIndent = CentimetersToPoints(0)
+        .RightIndent = CentimetersToPoints(0)
+        .SpaceBefore = 0
+        .SpaceBeforeAuto = False
+        .SpaceAfter = 0
+        .SpaceAfterAuto = False
+        .LineSpacingRule = wdLineSpace1pt5
+        .FirstLineIndent = CentimetersToPoints(0)
+        .OutlineLevel = wdOutlineLevelBodyText
+        .CharacterUnitLeftIndent = 0
+        .CharacterUnitRightIndent = 0
+        .CharacterUnitFirstLineIndent = 0
+        .LineUnitBefore = 0
+        .LineUnitAfter = 0
+        .AutoAdjustRightIndent = True
+        .WordWrap = True
+        .BaseLineAlignment = wdBaselineAlignAuto
+       ' Selection.Style = ActiveDocument.Styles("Body_table Text")
+    End With
+End Sub
+
 Sub Change_Table_Formatting_CodeBox(tbl As Word.Table)
     tbl.Select
     With tbl
@@ -52,123 +100,6 @@ Sub Change_Table_Formatting_CodeBox(tbl As Word.Table)
     End With
     With Options
         .DefaultBorderColor = wdColorAutomatic
-    End With
-End Sub
-
-Sub Change_Table_Formatting2(tbl As Word.Table)
-    tbl.Select
-    With tbl
-        .Style = "Table Grid"
-    End With
-    tbl.Rows.HeightRule = wdRowHeightAuto
-    With Selection.Font
-        .Name = "Times New Roman"
-        .Size = 12
-        .Color = wdColorAutomatic
-    End With
-    With tbl
-        .Borders(wdBorderLeft).Color = wdColorAutomatic
-        .Borders(wdBorderRight).Color = wdColorAutomatic
-        .Borders(wdBorderTop).Color = wdColorAutomatic
-        .Borders(wdBorderBottom).Color = wdColorAutomatic
-        .Borders(wdBorderHorizontal).Color = wdColorAutomatic
-        .Borders(wdBorderVertical).Color = wdColorAutomatic
-        .Borders(wdBorderDiagonalDown).LineStyle = wdLineStyleNone
-        .Borders(wdBorderDiagonalUp).LineStyle = wdLineStyleNone
-        .Borders.Shadow = False
-    End With
-''' background color:
-  ' Selection.Shading.BackgroundPatternColor = -603923969
-    With Selection.ParagraphFormat
-        .LeftIndent = CentimetersToPoints(0)
-        .RightIndent = CentimetersToPoints(0)
-        .SpaceBefore = 0
-        .SpaceBeforeAuto = False
-        .SpaceAfter = 0
-        .SpaceAfterAuto = False
-        .LineSpacingRule = wdLineSpaceSingle
-        .WidowControl = True
-        .KeepWithNext = False
-        .KeepTogether = False
-        .PageBreakBefore = False
-        .NoLineNumber = False
-        .Hyphenation = True
-        .FirstLineIndent = CentimetersToPoints(0)
-        .OutlineLevel = wdOutlineLevelBodyText
-        .Alignment = wdAlignParagraphLeft
-        .CharacterUnitLeftIndent = 0
-        .CharacterUnitRightIndent = 0
-        .CharacterUnitFirstLineIndent = 0
-        .LineUnitBefore = 0
-        .LineUnitAfter = 0
-        .MirrorIndents = False
-        .TextboxTightWrap = wdTightNone
-        .CollapsedByDefault = False
-    End With
-    With Options
-        .DefaultBorderColor = wdColorAutomatic
-    End With
-End Sub
-
-Public Sub Format_Tables()
-  Dim Table As Word.Table
-  For Each Table In ActiveDocument.Tables
-    Call Change_Table_Formatting(Table)
-  Next Table
-End Sub
-
-Public Sub Format_Tables2()
-  Dim Table As Word.Table
-  For Each Table In ActiveDocument.Tables
-    Call Change_Table_Formatting2(Table)
-  Next Table
-End Sub
-
-Sub Change_Table_Type(tbl As Word.Table)
-    tbl.Select
-    With tbl
-        .Style = "Table Grid"
-    End With
-    tbl.Rows.HeightRule = wdRowHeightAuto
-    With Selection.Font
-        .Color = wdColorAutomatic
-    End With
-    With tbl
-        .Borders(wdBorderLeft).Color = wdColorAutomatic
-        .Borders(wdBorderRight).Color = wdColorAutomatic
-        .Borders(wdBorderTop).Color = wdColorAutomatic
-        .Borders(wdBorderBottom).Color = wdColorAutomatic
-        .Borders(wdBorderHorizontal).Color = wdColorAutomatic
-        .Borders(wdBorderVertical).Color = wdColorAutomatic
-        .Borders(wdBorderDiagonalDown).LineStyle = wdLineStyleNone
-        .Borders(wdBorderDiagonalUp).LineStyle = wdLineStyleNone
-        .Borders.Shadow = False
-    End With
- '''  background color:
-    'Selection.Shading.BackgroundPatternColor = -603923969
-    With Options
-        .DefaultBorderColor = wdColorAutomatic
-    End With
-    With Selection.ParagraphFormat
-        .Alignment = wdAlignParagraphJustify
-        .LeftIndent = CentimetersToPoints(0)
-        .RightIndent = CentimetersToPoints(0)
-        .SpaceBefore = 0
-        .SpaceBeforeAuto = False
-        .SpaceAfter = 0
-        .SpaceAfterAuto = False
-        .LineSpacingRule = wdLineSpace1pt5
-        .FirstLineIndent = CentimetersToPoints(0)
-        .OutlineLevel = wdOutlineLevelBodyText
-        .CharacterUnitLeftIndent = 0
-        .CharacterUnitRightIndent = 0
-        .CharacterUnitFirstLineIndent = 0
-        .LineUnitBefore = 0
-        .LineUnitAfter = 0
-        .AutoAdjustRightIndent = True
-        .WordWrap = True
-        .BaseLineAlignment = wdBaselineAlignAuto
-       ' Selection.Style = ActiveDocument.Styles("Body_table Text")
     End With
 End Sub
 
@@ -263,17 +194,18 @@ Sub InsertTableCode()
         ' background color:
   '  Selection.Shading.BackgroundPatternColor = -603923969
 End Sub
+
 Sub Picture_Center_Border()
 '
-' Picture_Center_Border Macro
+' Picture to Center, with Border Macro
 '
 '
     Dim inshape As InlineShape, shape As shape
    
-    '1. ????. ????????.
+    '1. disable screenupdating
     Application.ScreenUpdating = False
    
-    '2. ????????? ????????, ??????????? ? ??????.
+    '2. Paragraph of picture formatting
     For Each inshape In ActiveDocument.InlineShapes
         With inshape.Range.ParagraphFormat
             .Alignment = wdAlignParagraphCenter
@@ -292,16 +224,20 @@ Sub Picture_Center_Border()
         inshape.Line.Weight = 0.5
     Next inshape
    
-    '3. ????????? ???????? ????????.
+    '3. Picture to the center
     For Each shape In ActiveDocument.Shapes
         shape.RelativeHorizontalPosition = wdRelativeHorizontalPositionMargin
         shape.Left = wdShapeCenter
     Next shape
    
-    '4. ???. ????????.
+    '4. Enable screenupdating
     Application.ScreenUpdating = True
 End Sub
+
 Sub Picture_Center_Border_Anonym()
+    '
+    ' The same but also added picture effect to hide content
+    '
     Dim inshape As InlineShape, shape As shape
    
     Application.ScreenUpdating = False
@@ -333,27 +269,9 @@ Sub Picture_Center_Border_Anonym()
     Application.ScreenUpdating = True
 End Sub
 
-
-Public Sub Format_Tables_Left_Font_R()
-  Dim Table As Word.Table
-  For Each Table In ActiveDocument.Tables
-    Call Change_Table_Format2(Table)
-  Next Table
-End Sub
-
-Sub Change_Table_Format2(tbl As Word.Table)
-    tbl.Select
-    With Selection
-        .Font.Name = "Courier New"
-        .Font.Size = 10
-        .Font.Color = wdColorAutomatic
-        .ParagraphFormat.Alignment = wdAlignParagraphLeft
-    End With
-End Sub
 Sub Paste_only_text()
 '
-' Paste_only_text Macro
-'
+' Paste_only_text Macro for hot keys, e.g. Cmd+Option+V
 '
     Selection.PasteSpecial Link:=False, DataType:=wdPasteText, Placement:= _
         wdInLine, DisplayAsIcon:=False
@@ -361,7 +279,7 @@ End Sub
 
 Sub OneTable()
 '
-' OneTable Macro
+' OneTable Macro to insert a table with hot keys, e.g. Cmd+Option+T
 '
 '
     Selection.Tables(1).Style = "Table Grid"
@@ -404,13 +322,6 @@ Sub OneTable()
     Selection.Font.Size = 10
 End Sub
 
-Public Sub TableSizeCorrect()
-  Dim Table As Word.Table
-  For Each Table In ActiveDocument.Tables
-    Call FuncTableSizeCorrect(Table)
-  Next Table
-End Sub
-
 Sub FuncTableSizeCorrect(tbl As Word.Table)
     With tbl
         .Rows.LeftIndent = CentimetersToPoints(0.1)
@@ -429,7 +340,15 @@ Sub FuncTableSizeCorrect(tbl As Word.Table)
     Selection.Font.Color = wdColorAutomatic
 End Sub
 
-Sub Change_List_Format(lis As Word.List)
+Public Sub TableSizeCorrect()
+  Dim Table As Word.Table
+  For Each Table In ActiveDocument.Tables
+    Call FuncTableSizeCorrect(Table)
+  Next Table
+End Sub
+
+
+Sub Change_List_Format_by_params(lis As Word.List)
 '
 ' List formatting steps
 '
@@ -450,16 +369,34 @@ Sub Change_List_Format(lis As Word.List)
     Next Paragr
 End Sub
 
+Sub Change_List_Format_by_Style(lis As Word.List)
+'
+' Apply style "List1" to all bulleted lists
+'
+    Dim list_type As String
+    Dim Paragr As Word.Paragraph
+    For Each Paragr In lis.ListParagraphs
+        If Paragr.Range.ListFormat.ListType = "2" Then
+            With Paragr
+                .Range.Style = "List1"
+            End With
+        End If
+    Next Paragr
+End Sub
+
 Public Sub Format_Lists()
+'
+' Change style of all lists
+'
   Dim List As Word.List
   For Each List In ActiveDocument.Lists
-    Call Change_List_Format(List)
+    Call Change_List_Format_by_Style(List)
   Next List
 End Sub
 
-Sub Change_list()
+Sub Format_one_list()
 '
-' List formatting steps
+' List of formatting steps
 '
         With Selection.Paragraphs
             .SpaceBeforeAuto = False
@@ -503,8 +440,8 @@ Sub Change_type_of_quotes()
         End With
         'restore user settings
         Options.AutoFormatAsYouTypeReplaceQuotes = blnQuotes
-
 End Sub
+
 Sub Change_some_symbols()
 ' Change_some_symbols
 '
@@ -594,5 +531,67 @@ Sub All_format_run()
     Call Change_type_of_quotes
     Call Remove_Hyperlinks
     Call Footnote_add
-    
+End Sub
+
+
+Sub Change_Table_Formatting_old(tbl As Word.Table)
+    tbl.Select
+    With tbl
+        .Style = "Table Grid"
+    End With
+    tbl.Rows.HeightRule = wdRowHeightAuto
+    With Selection.Font
+        .Name = "Times New Roman"
+        .Size = 12
+        .Color = wdColorAutomatic
+    End With
+    With tbl
+        .Borders(wdBorderLeft).Color = wdColorAutomatic
+        .Borders(wdBorderRight).Color = wdColorAutomatic
+        .Borders(wdBorderTop).Color = wdColorAutomatic
+        .Borders(wdBorderBottom).Color = wdColorAutomatic
+        .Borders(wdBorderHorizontal).Color = wdColorAutomatic
+        .Borders(wdBorderVertical).Color = wdColorAutomatic
+        .Borders(wdBorderDiagonalDown).LineStyle = wdLineStyleNone
+        .Borders(wdBorderDiagonalUp).LineStyle = wdLineStyleNone
+        .Borders.Shadow = False
+    End With
+''' background color:
+  ' Selection.Shading.BackgroundPatternColor = -603923969
+    With Selection.ParagraphFormat
+        .LeftIndent = CentimetersToPoints(0)
+        .RightIndent = CentimetersToPoints(0)
+        .SpaceBefore = 0
+        .SpaceBeforeAuto = False
+        .SpaceAfter = 0
+        .SpaceAfterAuto = False
+        .LineSpacingRule = wdLineSpaceSingle
+        .WidowControl = True
+        .KeepWithNext = False
+        .KeepTogether = False
+        .PageBreakBefore = False
+        .NoLineNumber = False
+        .Hyphenation = True
+        .FirstLineIndent = CentimetersToPoints(0)
+        .OutlineLevel = wdOutlineLevelBodyText
+        .Alignment = wdAlignParagraphLeft
+        .CharacterUnitLeftIndent = 0
+        .CharacterUnitRightIndent = 0
+        .CharacterUnitFirstLineIndent = 0
+        .LineUnitBefore = 0
+        .LineUnitAfter = 0
+        .MirrorIndents = False
+        .TextboxTightWrap = wdTightNone
+        .CollapsedByDefault = False
+    End With
+    With Options
+        .DefaultBorderColor = wdColorAutomatic
+    End With
+End Sub
+
+Public Sub Format_Tables_old()
+  Dim Table As Word.Table
+  For Each Table In ActiveDocument.Tables
+    Call Change_Table_Formatting_old(Table)
+  Next Table
 End Sub
